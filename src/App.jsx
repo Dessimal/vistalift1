@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import AccordionItem from "./AccordionItem";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const handleClick = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const accordionData = [
+    { title: "Accordion 1", content: "Content 1" },
+    { title: "Accordion 2", content: "Content 2" },
+    { title: "Accordion 3", content: "Content 3" },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      {accordionData.map((item, index) => (
+        <AccordionItem
+          key={index}
+          index={index} // Passing the index value
+          title={item.title} // Passing the title value
+          content={item.content} // Passing the content value
+          isOpen={openIndex === index} // Passing a boolean value
+          onClick={handleClick} // Passing the handleClick function
+        />
+      ))}
+    </div>
+  );
+};
 
-export default App
+export default App;
