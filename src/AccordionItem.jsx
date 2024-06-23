@@ -3,11 +3,7 @@ import React from "react";
 const AccordionItem = ({ index, title, content, isOpen, onClick }) => {
   return (
     <div>
-      <button onClick={() => onClick(index)}>
-        {" "}
-        // Using the onClick prop which is the handleClick function
-        {title}
-      </button>
+      <button onClick={() => onClick(index)}> {title}</button>
       {isOpen && <div>{content}</div>}
     </div>
   );
